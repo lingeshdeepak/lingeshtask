@@ -1,53 +1,52 @@
 <?php
-/**
- * The template for displaying search results pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @package SeoTask
- */
-
 get_header();
 ?>
+<main class="search-results">
+    <div class="container">
+        <h1>
+            <?php
+            printf(
+                esc_html__('Search Results for: %s', 'custom-theme'),
+                '<span>' . get_search_query() . '</span>'
+            );
+            ?>
+        </h1>
 
-	<main id="primary" class="site-main">
+        <?php if (have_posts()) : ?>
+            <div class="posts">
+                <?php
+                while (have_posts()) :
+                    the_post();
+                    ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                        <div class="excerpt">
+                            <?php the_excerpt(); ?>
+                        </div>
+                    </article>
+                    <?php
+                endwhile;
+                ?>
+            </div>
 
-		<?php if ( have_posts() ) : ?>
+            <div class="pagination">
+                <?php
+                the_posts_pagination(array(
+                    'prev_text' => __('Previous', 'custom-theme'),
+                    'next_text' => __('Next', 'custom-theme'),
+                ));
+                ?>
+            </div>
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'seotask' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
+        <?php else : ?>
+            <div class="no-results">
+                <h2><?php esc_html_e('No results found', 'custom-theme'); ?></h2>
+                <p><?php esc_html_e('Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'custom-theme'); ?></p>
+                <?php get_search_form(); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</main>
 <?php
-get_sidebar();
 get_footer();
+?>
