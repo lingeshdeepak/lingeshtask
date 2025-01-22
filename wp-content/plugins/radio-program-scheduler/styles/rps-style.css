@@ -1,0 +1,81 @@
+/* 
+ Styles for the Radio Program Scheduler plugin
+*/
+
+.week-view-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.week-view-calendar table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.week-view-calendar th, .week-view-calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.week-view-calendar th {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+.program {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.program img {
+    float: left;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.week-view-calendar th .date {
+    font-size: 0.85em;
+    color: #888;
+    font-weight: normal;
+}
+
+.schedule-content .week-view-calendar thead, .schedule-content .week-view-calendar tbody{
+    border: 1px solid #848484 !important;
+    width: 100%;
+}
+
+#program-schedule{
+    text-align: center;
+    padding: 50px;
+}
+
+#program-schedule .navigation-buttons {
+    margin: 10px 0;
+    text-align: center;
+}
+
+#program-schedule .navigation-buttons button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#program-schedule .navigation-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.error-field {
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
+    outline: none; /* Remove browser's default outline */
+}
